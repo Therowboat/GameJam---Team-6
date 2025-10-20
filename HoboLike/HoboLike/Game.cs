@@ -13,6 +13,9 @@ namespace HoboLike
 
         public void Start () 
         {
+            player = new Player ();
+            //RoomController = new RoomController();
+
             bool isrunning = true;
             while (isrunning) 
             {
@@ -23,15 +26,18 @@ namespace HoboLike
                 {
                     case ConsoleKey.Q:
                         Console.Clear();
-                        Console.WriteLine("Case 1");
+                        Console.WriteLine("Case Q");
                             break;
                     case ConsoleKey.W:
-                        
+                        Console.Clear();
+                        Console.WriteLine("Case W");
                         break;
                     case ConsoleKey.E:
-                        
+                        Console.Clear();
+                        Console.WriteLine("Case E");
                         break;
                     case ConsoleKey.R:
+                        Console.Clear();
                         isrunning = false;
                         break;
 
