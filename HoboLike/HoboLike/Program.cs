@@ -5,6 +5,8 @@
         static void Main(string[] args)
         {
             // game starts here
+            Game game = new Game();
+            game.Start();
         }
     }
 }
