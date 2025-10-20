@@ -8,13 +8,18 @@ namespace HoboLike
 {
     public class Player
     {
-        private int Energy { get; set; }
-
-
+        public int Energy { get; set; }
+        public Room CurrentRoom { get; }
+        
+        public Player(Room room)
+        {
+            CurrentRoom = room;
+            Energy = 100;
+        }
 
         public void Explore()
         {
-            
+
         }
 
         public void GoBack() 

@@ -9,5 +9,6 @@ namespace HoboLike
     public class AbandonedHouse : Room
     {
         public string name = "AbandonedHouse";
+        public bool hasSleepingSpace = true;
     }
 }
