@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,16 +10,17 @@ namespace HoboLike
 {
     public class Game
     {
-        public Player player;
-
+        public Player Player { get; }
         public void Start () 
         {
-            player = new Player ();
-            //RoomController = new RoomController();
+            Alley room = new Alley();
+            Player player = new Player(room);
+
 
             bool isrunning = true;
             while (isrunning) 
             {
+                Console.WriteLine($"room: {room.name}");
                
                 var input = Console.ReadKey();
 
