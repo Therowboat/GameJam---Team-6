@@ -41,7 +41,6 @@ namespace HoboLike
 
                 Console.Clear();
                 Console.WriteLine($"You enter the {newRoom.Name}");
-                newRoom.Describe();
                 Console.WriteLine($"Energy left: {Energy}");
             }
             else
