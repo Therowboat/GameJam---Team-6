@@ -11,13 +11,16 @@ namespace HoboLike
     public class Game
     {
         public Player Player { get; private set; }
-        public void Start () 
+        public void Start ()
         {
+            Console.WriteLine(Descriptions.GetIntroText());
+            Console.ReadKey();
+            Console.WriteLine("You enter the Alley");
             Player = new Player( new Alley() ); // player starts in alley
             bool isrunning = true;
             while (isrunning && Player.Energy > 0)
             {
-                Console.WriteLine($"You are in {Player.CurrentRoom.Name}.");
+                Player.CurrentRoom.Describe();
                 Console.WriteLine("Actions: [E] Explore, [Q] Go Back, [R] Rest, [Esc] Quit");
                 Console.Write("Choice: ");
                

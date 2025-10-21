@@ -12,11 +12,7 @@ namespace HoboLike
         {
             Name = "Underpass";
             HasSleepingSpace = true;
-        }
-
-        public override void Describe()
-        {
-            Console.WriteLine(Descriptions.GetUnderpassDescription());
+            Description = Descriptions.GetUnderpassDescription();
         }
     }
 }
