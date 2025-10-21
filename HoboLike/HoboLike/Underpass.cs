@@ -8,7 +8,10 @@ namespace HoboLike
 {
     public class Underpass : Room
     {
-        public string name = "Underpass";
-        public bool hasSleepingSpace;
+        public Underpass()
+        {
+            Name = "Underpass";
+            HasSleepingSpace = true;
+        }
     }
 }
