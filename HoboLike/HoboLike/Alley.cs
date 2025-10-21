@@ -8,7 +8,10 @@ namespace HoboLike
 {
     public class Alley : Room
     {
-        public string name = "Alley";
-        public bool hasSleepingSpace = false;
+        public Alley()
+        {
+            Name = "Alley";
+            HasSleepingSpace = false;
+        }
     }
 }

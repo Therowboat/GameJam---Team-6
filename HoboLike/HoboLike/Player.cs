@@ -8,18 +8,23 @@ namespace HoboLike
 {
     public class Player
     {
-        public int Energy { get; set; }
-        public Room CurrentRoom { get; }
-        
-        public Player(Room room)
+        public int Energy { get; private set; }
+        public Room CurrentRoom { get; private set; }
+        private Queue<Room> recentRooms = new Queue<Room>();
+        public bool IsAlive => Energy > 0;
+
+        public Player(Room startRoom)
         {
-            CurrentRoom = room;
-            Energy = 100;
+            CurrentRoom = startRoom;
+            Energy = 10; // start energy
         }
 
         public void Explore()
         {
-
+            if (Energy > 0)
+            {
+                Console.WriteLine("Too tired");
+            }
         }
 
         public void GoBack() 

@@ -10,37 +10,34 @@ namespace HoboLike
 {
     public class Game
     {
-        public Player Player { get; }
+        public Player Player { get; private set; }
         public void Start () 
         {
-            Alley room = new Alley();
-            Player player = new Player(room);
+            Player = new Player( new Alley() ); // player starts in alley
 
 
             bool isrunning = true;
             while (isrunning) 
             {
-                Console.WriteLine($"room: {room.name}");
+                Console.WriteLine($"room: {Player.CurrentRoom.Name}");
                
                 var input = Console.ReadKey();
 
                 switch (input.Key) 
                 {
-                    case ConsoleKey.Q:
-                        Console.Clear();
-                        Console.WriteLine("Case Q");
-                            break;
-                    case ConsoleKey.W:
-                        Console.Clear();
-                        Console.WriteLine("Case W");
-                        break;
-                    case ConsoleKey.E:
+                    case ConsoleKey.E: // explore
                         Console.Clear();
                         Console.WriteLine("Case E");
                         break;
-                    case ConsoleKey.R:
+                    case ConsoleKey.Q: // go back
                         Console.Clear();
-                        isrunning = false;
+                        Console.WriteLine("Case Q");
+                        break;
+                    case ConsoleKey.R: // rest
+                        Console.Clear();
+                        break;
+                    case ConsoleKey.Escape: // close game
+                        Console.Clear();
                         break;
 
                 }
