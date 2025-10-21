@@ -18,5 +18,10 @@ namespace HoboLike
         {
             Console.WriteLine($"This is a {Name}."); //virtual if we wanna override in subclass
         }
+
+        public void HasSlept()
+        {
+            HasSleepingSpace = false;
+        }
     }
 }
