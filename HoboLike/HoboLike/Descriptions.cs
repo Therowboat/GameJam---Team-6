@@ -9,7 +9,9 @@ namespace HoboLike
 {
     internal class Descriptions
     {
-        public static string[] AlleyDescriptions = 
+        private static Random rng = new Random();
+
+        private static string[] AlleyDescriptions = 
         {
             "A narrow alley reeks of wet cardboard and old grease, the stink clinging to the brick like a film. The streetlight at the mouth flickers once, twice, and then holds, casting a sickly halo that doesn’t reach the back wall. Beyond it, the dark sits heavy, pooling in doorways and under the fire escape.",
             "Wind snakes between the buildings and rattles a loose grate until it chatters like teeth. A cat perches on a dented dumpster lid, yellow eyes steady, tail twitching with small, decisive cuts. Somewhere high above, a bottle rolls and knocks, then goes quiet.",
@@ -18,12 +20,12 @@ namespace HoboLike
             "A line of laundry stretches overhead—socks, two shirts, a faded scarf that catches the breeze. The cloth flutters against the sky and turns the space briefly domestic. The smell of soap lingers just enough to cut through the city’s damp.",
             "After the storm, the air smells rinsed and new. Puddles settle into glassy ovals that hold a sliver of bright blue between the roofs. The alley breathes, brick by brick, as if relieved to have weathered another night."
         };
-        public static string GetAlleyDescription(int index)
+        public static string GetAlleyDescription()
         {
-            return AlleyDescriptions[index];
+            return AlleyDescriptions[(rng.Next(AlleyDescriptions.Length))];
         }
 
-        public static string[] UnderpassDescriptions =
+        private static string[] UnderpassDescriptions =
         {
             "Concrete thrums with the weight of traffic above, a steady bass note that never stops. Damp climbs the pillars in tide lines, and diesel hangs low, heavy as a curtain. The fluorescent tubes stutter, stitching the space into uneven bands of light and shadow.",
             "Water beads along the ceiling and taps into scattered puddles in a patient rhythm. A shopping cart lies on its side, one wheel still quivering from some long-past nudge. Pigeons shuffle in the rafters, all rustle and wing, never quite revealing themselves.",
@@ -32,12 +34,12 @@ namespace HoboLike
             "Someone has swept a corner clean: bare concrete, neatly stacked crates, a patch where the dust doesn’t settle. The hum above softens to a steady comfort, a sign that the world keeps moving. The air is out of the rain and almost warm.",
             "The storm roars on the roadway, but underneath it thins to a hush. Drips slow, then stop, and a pale light filters through like gauze. The underpass feels briefly like a sanctuary carved out of noise."
         };
-        public static string GetUnderpassDescription(int index)
+        public static string GetUnderpassDescription()
         {
-            return UnderpassDescriptions[index];
+            return UnderpassDescriptions[(rng.Next(UnderpassDescriptions.Length))];
         }
 
-        public static string[] AbandonedHouseDescriptions =
+        private static string[] AbandonedHouseDescriptions =
         {
             "The front door sags on a single hinge and complains when the wind shifts. Inside, wallpaper curls off the plaster in long, brittle tongues, revealing the bone-white beneath. Dust hangs in the stale rooms until a draft stirs it into a dull glitter.",
             "Every floorboard answers with a tired groan, as if the house has learned to speak only in aches. A staircase climbs into a darkness that never quite gives anything back. In the living room, a single shoe rests beside a toppled chair, and the absence hums.",
@@ -46,9 +48,9 @@ namespace HoboLike
             "The hearth is soot-stained but sound, bricks set with a kind of stubborn dignity. In the quiet, the house feels less empty than paused, waiting for the next chapter to be written across its walls. A faint scent of pine drifts in from the overgrown yard.",
             "Vines curl around the porch rail in patient spirals, bright green against the gray. Birds chatter in the eaves and stitch the silence back together. In the back room, the light lingers longer than it needs to, and the space holds onto the warmth."
         };
-        public static string GetAbandonedHouseDescription(int index)
+        public static string GetAbandonedHouseDescription()
         {
-            return AbandonedHouseDescriptions[index];
+            return AbandonedHouseDescriptions[(rng.Next(AbandonedHouseDescriptions.Length))];
         }
 
     }

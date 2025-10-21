@@ -8,8 +8,6 @@ namespace HoboLike
 {
     public class AbandonedHouse : Room
     {
-        private static Random rng = new Random();
-
         public AbandonedHouse()
         {
             Name = "Abandoned House";
@@ -18,8 +16,7 @@ namespace HoboLike
 
         public override void Describe()
         {
-            string[] DescriptionArray = Descriptions.AlleyDescriptions;
-            Console.WriteLine(DescriptionArray[(rng.Next(DescriptionArray.Length))]);
+            Console.WriteLine(Descriptions.GetAbandonedHouseDescription());
         }
     }
 }
