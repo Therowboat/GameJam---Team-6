@@ -13,5 +13,10 @@ namespace HoboLike
             Name = "Abandoned House";
             HasSleepingSpace = true;
         }
+
+        public override void Describe()
+        {
+            Console.WriteLine("Hej");
+        }
     }
 }
