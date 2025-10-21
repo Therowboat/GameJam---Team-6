@@ -11,7 +11,10 @@ namespace HoboLike
     public class Game
     {
         public Player Player { get; private set; }
-        public void Start ()
+        public int Day { get; private set; } = 0;
+        private const int MaxDays = 3;
+
+        public void Start () 
         {
             Console.WriteLine(Descriptions.GetIntroText());
             Console.ReadKey();
@@ -36,16 +39,7 @@ namespace HoboLike
                         Player.GoBack();
                         break;
                     case ConsoleKey.R: // rest
-                        if (Player.CurrentRoom.HasSleepingSpace)
-                        {
-                            Console.WriteLine("You rest safely and regain some energy.");
-                            Player.Energy += 4;
-                        }
-                        else
-                        {
-                            Console.WriteLine("You try to rest, but it's unsafe. You loose some energy.");
-                            Player.Energy -= 4;
-                        }
+                        Rest();
                         break;
                     case ConsoleKey.Escape: // close game
                         isrunning = false;
@@ -59,6 +53,34 @@ namespace HoboLike
             if (Player.Energy <= 0)
             {
                 Console.WriteLine("You have no more energy to continue, you perish! Game over.");
+            }
+        }
+
+        private void Rest()
+        {
+            if (Player.CurrentRoom.HasSleepingSpace)
+            {
+                Console.WriteLine("You rest safely and regain some energy.");
+                Player.Energy += 4;
+            }
+            else
+            {
+                Console.WriteLine("You try to rest, but it's unsafe. You loose some energy.");
+                Player.Energy -= 4;
+            }
+
+            //day advances
+            Day++;
+            Player.CurrentRoom.HasSlept();
+            Console.WriteLine($"\nNew day begins... Day {Day}!");
+            Console.WriteLine($"Energy left: {Player.Energy}");
+
+            if (Day > MaxDays && Player.IsAlive)
+            {
+                Console.Clear();
+                Console.WriteLine("You've survived three days!");
+                Console.WriteLine("Your friend found you a couch to crash on.");
+                Environment.Exit(0);
             }
         }
     }

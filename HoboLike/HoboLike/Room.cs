@@ -19,5 +19,10 @@ namespace HoboLike
         {
             Console.WriteLine(Description);
         }
+
+        public void HasSlept()
+        {
+            HasSleepingSpace = false;
+        }
     }
 }
