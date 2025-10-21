@@ -14,6 +14,7 @@ namespace HoboLike
         {
             Name = "Alley";
             HasSleepingSpace = false;
+            Description = Descriptions.GetAlleyDescription();
 
             //always explore new alley from alley
             AccessibleRooms.Add(() => new Alley());
@@ -23,11 +24,6 @@ namespace HoboLike
                 AccessibleRooms.Add(() => new Underpass());
             if (rng.NextDouble() < 0.2) // 20% chance
                 AccessibleRooms.Add(() => new AbandonedHouse());
-        }
-
-        public override void Describe()
-        {
-            Console.WriteLine(Descriptions.GetAlleyDescription());
         }
     }
 }
