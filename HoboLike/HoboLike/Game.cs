@@ -14,33 +14,48 @@ namespace HoboLike
         public void Start () 
         {
             Player = new Player( new Alley() ); // player starts in alley
-
-
             bool isrunning = true;
-            while (isrunning) 
+            while (isrunning && Player.Energy > 0)
             {
-                Console.WriteLine($"room: {Player.CurrentRoom.Name}");
+                Console.WriteLine($"You are in {Player.CurrentRoom.Name}.");
+                Console.WriteLine("Actions: [E] Explore, [Q] Go Back, [R] Rest, [Esc] Quit");
+                Console.Write("Choice: ");
                
-                var input = Console.ReadKey();
+                var key = Console.ReadKey(true).Key;
+                Console.Clear();
 
-                switch (input.Key) 
+                switch (key) 
                 {
                     case ConsoleKey.E: // explore
-                        Console.Clear();
-                        Console.WriteLine("Case E");
+                        Player.Explore();
                         break;
                     case ConsoleKey.Q: // go back
-                        Console.Clear();
-                        Console.WriteLine("Case Q");
+                        Player.GoBack();
                         break;
                     case ConsoleKey.R: // rest
-                        Console.Clear();
+                        if (Player.CurrentRoom.HasSleepingSpace)
+                        {
+                            Console.WriteLine("You rest safely and regain some energy.");
+                            Player.Energy += 4;
+                        }
+                        else
+                        {
+                            Console.WriteLine("You try to rest, but it's unsafe. You loose some energy.");
+                            Player.Energy -= 4;
+                        }
                         break;
                     case ConsoleKey.Escape: // close game
-                        Console.Clear();
+                        isrunning = false;
+                        Console.WriteLine("You quit. Game over.");
                         break;
-
+                    default:
+                        Console.WriteLine("Invalid key.");
+                        break;
                 }
+            }
+            if (Player.Energy <= 0)
+            {
+                Console.WriteLine("You have no more energy to continue, you perish! Game over.");
             }
         }
     }

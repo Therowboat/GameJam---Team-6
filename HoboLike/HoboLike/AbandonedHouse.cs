@@ -10,7 +10,7 @@ namespace HoboLike
     {
         public AbandonedHouse()
         {
-            Name = "AbandonedHouse";
+            Name = "Abandoned House";
             HasSleepingSpace = true;
         }
     }
