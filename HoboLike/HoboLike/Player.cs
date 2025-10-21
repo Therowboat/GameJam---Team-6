@@ -10,7 +10,7 @@ namespace HoboLike
     {
         public int Energy { get; set; } = 10; //start energy
         public Room CurrentRoom { get; private set; }
-        private Queue<Room> recentRooms = new Queue<Room>();
+        private Room? lastRoom; //track last location
         public bool IsAlive => Energy > 0;
 
         public Player(Room startRoom)
@@ -33,6 +33,7 @@ namespace HoboLike
 
             if (int.TryParse(input, out int choice) && choice >= 1 && choice <= options.Count)
             {
+                lastRoom = CurrentRoom;
                 Room newRoom = options[choice - 1]();
 
                 CurrentRoom = newRoom;
@@ -51,13 +52,17 @@ namespace HoboLike
 
         public void GoBack() 
         {
-            // TODO: needs implementation
-        }
-
-        // adds rooms to queue so we can use GoBack()
-        public void AddToRecentRooms(Room room)
-        {
-            // TODO: needs implementation
+            if (lastRoom == null)
+            {
+                Console.WriteLine("No previous room to go back to.");
+                return;
+            }
+            Room tempRoom = CurrentRoom;
+            CurrentRoom = lastRoom;
+            lastRoom = tempRoom;
+            Console.Clear();
+            Console.WriteLine($"You return to {CurrentRoom.Name} (no energy cost).");
+            CurrentRoom.Describe();
         }
     }
 }
