@@ -8,6 +8,8 @@ namespace HoboLike
 {
     public class Underpass : Room
     {
+        private static Random rng = new Random();
+
         public Underpass()
         {
             Name = "Underpass";
@@ -16,7 +18,8 @@ namespace HoboLike
 
         public override void Describe()
         {
-            Console.WriteLine("Hej");
+            string[] DescriptionArray = Descriptions.AlleyDescriptions;
+            Console.WriteLine(DescriptionArray[(rng.Next(DescriptionArray.Length))]);
         }
     }
 }

@@ -27,7 +27,8 @@ namespace HoboLike
 
         public override void Describe()
         {
-            Console.WriteLine("Hej");
+            string[] DescriptionArray = Descriptions.AlleyDescriptions;
+            Console.WriteLine(DescriptionArray[(rng.Next(DescriptionArray.Length))]);
         }
     }
 }
