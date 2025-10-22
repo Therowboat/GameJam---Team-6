@@ -20,7 +20,7 @@ namespace HoboLike
             while (mainRunning)
             {
                 Console.Clear();
-                Console.WriteLine("--Welcome to HoboLike--\n\n[Enter] Start\n[Esc] Escape");
+                Console.WriteLine($"{Descriptions.GetIntroAscii()}\n\n[Enter] Start\n[Esc] Escape");
                 var key = Console.ReadKey(true).Key;
                 Console.Clear();
 
@@ -48,6 +48,7 @@ namespace HoboLike
             while (isrunning && Player.Energy > 0)
             {
                 Player.CurrentRoom.Describe();
+                Player.CurrentRoom.SetExplored();
                 Console.WriteLine("Actions: [E] Explore, [Q] Go Back, [R] Rest, [I] Interact, [Esc] Quit");
                 Console.Write("Choice: ");
                

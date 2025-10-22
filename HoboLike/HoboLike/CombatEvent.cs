@@ -20,6 +20,7 @@ namespace HoboLike
                 return;
             }
 
+            Console.WriteLine(Descriptions.GetRatAscii());
             Console.WriteLine("Vicious rat attacks you!");
 
             Random rng = new Random();
