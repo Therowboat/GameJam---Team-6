@@ -15,6 +15,8 @@ namespace HoboLike
         //list of functions that create accessible rooms
         public List<Func<Room>> AccessibleRooms { get; protected set; } = new List<Func<Room>>();
 
+        public List<IEvent> Events { get; protected set; } = new List<IEvent>();
+
         public void Describe()
         {
             Console.WriteLine(Description);
