@@ -54,7 +54,12 @@ namespace HoboLike
         }
 
         private static string IntroText =
-            "No keys. No bed. Only streets that never sleep.\nYou have 3 days to make it before your buddy gets back from vacation, and a worn-out sofa becomes your haven.\nUntil then, trash cans, underpasses, and abandoned houses are your best friends—but beware, dangers lurk around every corner.\nThree days. No guarantees. Stay alive. \nThe Alley is where your journey will start, choose your next step wisely.\n(press any key to step into the night)\n";
+            "No keys. No bed. Only streets that never sleep.\n" +
+            "You have 3 days to make it before your buddy gets back from vacation, and a worn-out sofa becomes your haven.\n" +
+            "Until then, trash cans, underpasses, and abandoned houses are your best friends—but beware, dangers lurk around every corner.\n" +
+            "Three days. No guarantees. Stay alive. \n" +
+            "The Alley is where your journey will start, choose your next step wisely.\n\n" +
+            "(Press any key to step into the night)\n";
         public static string GetIntroText()
         {
             return IntroText;
