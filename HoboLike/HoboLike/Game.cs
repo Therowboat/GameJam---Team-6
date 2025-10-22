@@ -25,6 +25,7 @@ namespace HoboLike
             while (isrunning && Player.Energy > 0)
             {
                 Player.CurrentRoom.Describe();
+                Player.CurrentRoom.SetExplored();
                 Console.WriteLine("Actions: [E] Explore, [Q] Go Back, [R] Rest, [I] Interact, [Esc] Quit");
                 Console.Write("Choice: ");
                
