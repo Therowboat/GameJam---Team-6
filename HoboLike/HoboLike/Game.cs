@@ -100,14 +100,40 @@ namespace HoboLike
                                 Console.WriteLine($"{i + 1}. {Player.CurrentRoom.Events[i].Name}");
                             }
 
-                            Console.Write("> ");
-                            if (int.TryParse(Console.ReadLine(), out int choice)
-                                && choice >= 1 && choice <= Player.CurrentRoom.Events.Count)
+                            Console.WriteLine("Press the number of your choice:");
+                            var key2 = Console.ReadKey(true).Key;
+                            Console.Clear();
+
+                            int choice = -1;
+
+                            switch (key2)
+                            {
+                                case ConsoleKey.D1:
+                                    choice = 1;
+                                    break;
+                                case ConsoleKey.D2:
+                                    choice = 2;
+                                    break;
+                                case ConsoleKey.D3:
+                                    choice = 3;
+                                    break;
+                                case ConsoleKey.D4:
+                                    choice = 4;
+                                    break;
+                                case ConsoleKey.D5:
+                                    choice = 5;
+                                    break;
+                            }
+
+                            if (choice >= 1 && choice <= Player.CurrentRoom.Events.Count)
                             {
                                 var selected = Player.CurrentRoom.Events[choice - 1];
-                                Console.Clear();
                                 selected.Trigger(Player);
                                 Console.WriteLine($"\nEnergy: {Player.Energy}");
+                            }
+                            else
+                            {
+                                Console.WriteLine("Invalid choice.");
                             }
                         }
                         break;

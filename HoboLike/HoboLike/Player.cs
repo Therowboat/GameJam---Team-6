@@ -36,10 +36,31 @@ namespace HoboLike
                 Room roomOption = options[i]();
                 Console.WriteLine($"{i + 1}. {roomOption.Name}");
             }
-            Console.Write("> ");
-            string input = Console.ReadLine();
+            Console.WriteLine("Press number of your choice:");
+            var key2 = Console.ReadKey(true).Key;
+            Console.Clear();
+            int choice = -1;
 
-            if (int.TryParse(input, out int choice) && choice >= 1 && choice <= options.Count)
+            switch (key2)
+            {
+                case ConsoleKey.D1:
+                    choice = 1;
+                    break;
+                case ConsoleKey.D2:
+                    choice = 2;
+                    break;
+                case ConsoleKey.D3:
+                    choice = 3;
+                    break;
+                case ConsoleKey.D4:
+                    choice = 4;
+                    break;
+                case ConsoleKey.D5:
+                    choice = 5;
+                    break;
+            }
+
+            if (choice >= 1 && choice <= options.Count)
             {
                 lastRoom = CurrentRoom;
                 Room newRoom = options[choice - 1]();
