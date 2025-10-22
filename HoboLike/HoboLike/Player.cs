@@ -14,7 +14,7 @@ namespace HoboLike
             get => energy;
             set
             {
-                energy = Math.Min(value, 10); //energy can't exceed 10
+                energy = Math.Min(value, 20); //energy can't exceed 20
             }
         }
         public Room CurrentRoom { get; private set; }
