@@ -61,7 +61,7 @@ namespace HoboLike
             lastRoom = tempRoom;
             Console.Clear();
             Console.WriteLine($"You return to {CurrentRoom.Name} (no energy cost).");
-            CurrentRoom.Describe();
+            //CurrentRoom.Describe();
         }
     }
 }

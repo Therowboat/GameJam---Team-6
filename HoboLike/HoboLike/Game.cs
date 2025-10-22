@@ -18,6 +18,7 @@ namespace HoboLike
         {
             Console.WriteLine(Descriptions.GetIntroText());
             Console.ReadKey();
+            Console.Clear();
             Console.WriteLine("You enter the Alley");
             Player = new Player( new Alley() ); // player starts in alley
             bool isrunning = true;
