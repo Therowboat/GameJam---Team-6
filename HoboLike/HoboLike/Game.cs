@@ -115,6 +115,7 @@ namespace HoboLike
                     case ConsoleKey.Escape: // close game
                         isrunning = false;
                         Console.WriteLine("You quit. Game over.");
+                        Day = 1;
                         return;
 
                     default:
@@ -125,6 +126,7 @@ namespace HoboLike
             if (Player.Energy <= 0)
             {
                 Console.WriteLine("You have no more energy to continue, you perish! Game over.");
+                Day = 1;
             }
         }
 
@@ -159,6 +161,7 @@ namespace HoboLike
                 Console.Clear();
                 Console.WriteLine("You've survived three days!");
                 Console.WriteLine("Your friend found you a couch to crash on.");
+                Day = 1;
                 Console.ReadKey();
                 return;
             }
