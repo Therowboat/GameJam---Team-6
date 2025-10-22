@@ -14,8 +14,31 @@ namespace HoboLike
         public int Day { get; private set; } = 1;
         private const int MaxDays = 3;
 
+        public void StartMenu()
+        {
+            bool mainRunning = true;
+            while (mainRunning)
+            {
+                Console.Clear();
+                Console.WriteLine("--Welcome to HoboLike--\n\n[Enter] Start\n[Esc] Escape");
+                var key = Console.ReadKey(true).Key;
+                Console.Clear();
+
+                switch (key)
+                {
+                    case ConsoleKey.Enter:
+                        Start();
+                        break;
+                    case ConsoleKey.Escape:
+                        mainRunning = false;
+                        break;
+                }
+            }
+        }
+
         public void Start () 
         {
+            Console.Clear();
             Console.WriteLine(Descriptions.GetIntroText());
             Console.ReadKey();
             Console.Clear();
@@ -90,13 +113,14 @@ namespace HoboLike
                         break;
 
                     case ConsoleKey.Escape: // close game
-                                isrunning = false;
-                                Console.WriteLine("You quit. Game over.");
-                                break;
-                            default:
-                                Console.WriteLine("Invalid key.");
-                                break;
-                            }
+                        isrunning = false;
+                        Console.WriteLine("You quit. Game over.");
+                        return;
+
+                    default:
+                        Console.WriteLine("Invalid key.");
+                        break;
+                }
             }
             if (Player.Energy <= 0)
             {
@@ -135,7 +159,8 @@ namespace HoboLike
                 Console.Clear();
                 Console.WriteLine("You've survived three days!");
                 Console.WriteLine("Your friend found you a couch to crash on.");
-                Environment.Exit(0);
+                Console.ReadKey();
+                return;
             }
         }
     }

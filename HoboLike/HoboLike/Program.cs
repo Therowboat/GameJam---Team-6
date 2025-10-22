@@ -6,7 +6,7 @@
         {
             // game starts here
             Game game = new Game();
-            game.Start();
+            game.StartMenu();
         }
     }
 }
