@@ -28,10 +28,7 @@ namespace HoboLike
 
         public void Explore()
         {
-            var options = CurrentRoom.AccessibleRooms;
-            Console.WriteLine("\nWhere do you want to explore?");
-
-            for (int i = 0; i < options.Count; i++)
+            if (CurrentRoom.Name == "Alley")
             {
                 Room roomOption = options[i]();
                 Console.WriteLine($"{i + 1}. {roomOption.Name}");
@@ -64,17 +61,44 @@ namespace HoboLike
             {
                 lastRoom = CurrentRoom;
                 Room newRoom = options[choice - 1]();
+                var options = CurrentRoom.AccessibleRooms;
+                if (!CurrentRoom.AccessibleRooms.Contains(lastRoom))
+                    {
+                        CurrentRoom.AddAccessibleRooms();
+                    }
+                Console.WriteLine("\nWhere do you want to explore?");
 
-                CurrentRoom = newRoom;
-                Energy -= 2; //explore energy cost
+                for (int i = 0; i < options.Count; i++)
+                {
+                    Room roomOption = options[i];
 
-                Console.Clear();
-                Console.WriteLine($"You enter the {newRoom.Name}");
-                Console.WriteLine($"Energy left: {Energy}");
-            }
-            else
-            {
-                Console.WriteLine("Invalid choice.");
+                    string exploredStatus = "";
+                    if (roomOption.Explored == true)
+                    { 
+                        exploredStatus = "[Already explored]";
+                    }
+
+                    Console.WriteLine($"{i + 1}. {roomOption.Name} {exploredStatus}");
+                }
+                Console.Write("> ");
+                string input = Console.ReadLine();
+
+                if (int.TryParse(input, out int choice) && choice >= 1 && choice <= options.Count)
+                {
+                    lastRoom = CurrentRoom;
+                    Room newRoom = options[choice - 1];
+
+                    CurrentRoom = newRoom;
+                    Energy -= 2; //explore energy cost
+
+                    Console.Clear();
+                    Console.WriteLine($"You enter the {newRoom.Name}");
+                    Console.WriteLine($"Energy left: {Energy}");
+                }
+                else
+                {
+                    Console.WriteLine("Invalid choice.");
+                }
             }
         }
 
