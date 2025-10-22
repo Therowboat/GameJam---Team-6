@@ -8,11 +8,15 @@ namespace HoboLike
 {
     public class AbandonedHouse : Room
     {
+
         public AbandonedHouse()
         {
             Name = "Abandoned House";
-            HasSleepingSpace = true;
+            HasSleepingSpace = true; //always sleeping space
             Description = Descriptions.GetAbandonedHouseDescription();
+
+            //combat event
+            Events.Add(new CombatEvent()); // always rat combat
         }
     }
 }

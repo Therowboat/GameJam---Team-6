@@ -11,7 +11,7 @@ namespace HoboLike
     public class Game
     {
         public Player Player { get; private set; }
-        public int Day { get; private set; } = 0;
+        public int Day { get; private set; } = 1;
         private const int MaxDays = 3;
 
         public void Start () 
@@ -24,7 +24,7 @@ namespace HoboLike
             while (isrunning && Player.Energy > 0)
             {
                 Player.CurrentRoom.Describe();
-                Console.WriteLine("Actions: [E] Explore, [Q] Go Back, [R] Rest, [Esc] Quit");
+                Console.WriteLine("Actions: [E] Explore, [Q] Go Back, [R] Rest, [I] Interact, [Esc] Quit");
                 Console.Write("Choice: ");
                
                 var key = Console.ReadKey(true).Key;
@@ -35,20 +35,67 @@ namespace HoboLike
                     case ConsoleKey.E: // explore
                         Player.Explore();
                         break;
+
                     case ConsoleKey.Q: // go back
                         Player.GoBack();
                         break;
+
                     case ConsoleKey.R: // rest
-                        Rest();
+                        Console.Clear();
+                        if (Player.CurrentRoom.HasSleepingSpace)
+                        {
+                            Console.WriteLine("This seems like a safe place to sleep.");
+                        }
+                        else
+                        {
+                            Console.WriteLine("This place feels unsafe to sleep. You might lose energy if you rest here");
+                        }
+
+                        Console.Write("Do you wish to rest anyway? (Y/N): ");
+                        var restChoice = Console.ReadKey(true).Key;
+                        if (restChoice == ConsoleKey.Y)
+                        {
+                            Rest();
+                        }
+                        else if (restChoice == ConsoleKey.N)
+                        {
+                            Console.WriteLine("You decide not to rest for now.");
+                        }
                         break;
+
+                    case ConsoleKey.I: // interact
+                        if (Player.CurrentRoom.Events.Count == 0)
+                        {
+                            Console.WriteLine("There's nothing interesting to do here.");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Available interactions:");
+                            for (int i = 0; i < Player.CurrentRoom.Events.Count; i++)
+                            {
+                                Console.WriteLine($"{i + 1}. {Player.CurrentRoom.Events[i].Name}");
+                            }
+
+                            Console.Write("> ");
+                            if (int.TryParse(Console.ReadLine(), out int choice)
+                                && choice >= 1 && choice <= Player.CurrentRoom.Events.Count)
+                            {
+                                var selected = Player.CurrentRoom.Events[choice - 1];
+                                Console.Clear();
+                                selected.Trigger(Player);
+                                Console.WriteLine($"\nEnergy: {Player.Energy}");
+                            }
+                        }
+                        break;
+
                     case ConsoleKey.Escape: // close game
-                        isrunning = false;
-                        Console.WriteLine("You quit. Game over.");
-                        break;
-                    default:
-                        Console.WriteLine("Invalid key.");
-                        break;
-                }
+                                isrunning = false;
+                                Console.WriteLine("You quit. Game over.");
+                                break;
+                            default:
+                                Console.WriteLine("Invalid key.");
+                                break;
+                            }
             }
             if (Player.Energy <= 0)
             {
@@ -58,6 +105,13 @@ namespace HoboLike
 
         private void Rest()
         {
+            bool hasBlockingEvent = Player.CurrentRoom.Events.Any(e => e.BlockActions);
+            if (hasBlockingEvent)
+            {
+                Console.WriteLine("You cannot do that while danger is nearby!");
+                return;
+            }
+
             if (Player.CurrentRoom.HasSleepingSpace)
             {
                 Console.WriteLine("You rest safely and regain some energy.");

@@ -24,6 +24,9 @@ namespace HoboLike
                 AccessibleRooms.Add(() => new Underpass());
             if (rng.NextDouble() < 0.2) // 20% chance
                 AccessibleRooms.Add(() => new AbandonedHouse());
+
+            //room events
+            Events.Add(new RummageEvent()); // always trashcan event
         }
     }
 }
