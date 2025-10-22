@@ -20,7 +20,7 @@ namespace HoboLike
             while (mainRunning)
             {
                 Console.Clear();
-                Console.WriteLine("--Welcome to HoboLike--\n\n[Enter] Start\n[Esc] Escape");
+                Console.WriteLine($"{Descriptions.GetIntroAscii()}\n\n[Enter] Start\n[Esc] Escape");
                 var key = Console.ReadKey(true).Key;
                 Console.Clear();
 
