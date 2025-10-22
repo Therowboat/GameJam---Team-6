@@ -8,7 +8,15 @@ namespace HoboLike
 {
     public class Player
     {
-        public int Energy { get; set; } = 10; //start energy
+        private int energy = 10; //start energy
+        public int Energy 
+        { 
+            get => energy;
+            set
+            {
+                energy = Math.Min(value, 10); //energy can't exceed 10
+            }
+        }
         public Room CurrentRoom { get; private set; }
         private Room? lastRoom; //track last location
         public bool IsAlive => Energy > 0;

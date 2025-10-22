@@ -31,15 +31,15 @@ namespace HoboLike
             Random rng = new Random();
             double roll = rng.NextDouble();
 
-            if (roll < 0.3) //30% chance
+            if (roll < 0.20) //20% chance
             {
                 Console.WriteLine("You found nothing useful...");
                 player.Energy -= 1;
             }
-            else if (roll < 0.9) //60% chance
+            else if (roll < 0.9) //70% chance
             {
                 Console.WriteLine("You found some snacks!\nThe taste is questionable.. You regain some energy.");
-                player.Energy += 3;
+                player.Energy += 2;
             }
             else //10% chance
             {
