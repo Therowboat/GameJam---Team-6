@@ -28,53 +28,69 @@ namespace HoboLike
 
         public void Explore()
         {
-            var options = CurrentRoom.AccessibleRooms;
-            Console.WriteLine("\nWhere do you want to explore?");
-
-            for (int i = 0; i < options.Count; i++)
+            if (CurrentRoom.Name == "Alley")
             {
-                Room roomOption = options[i]();
-                Console.WriteLine($"{i + 1}. {roomOption.Name}");
-            }
-            Console.WriteLine("Press number of your choice:");
-            var key2 = Console.ReadKey(true).Key;
-            Console.Clear();
-            int choice = -1;
+                var options = CurrentRoom.AccessibleRooms;
+                if (!CurrentRoom.AccessibleRooms.Contains(lastRoom))
+                {
+                    CurrentRoom.AddAccessibleRooms();
+                }
 
-            switch (key2)
-            {
-                case ConsoleKey.D1:
-                    choice = 1;
-                    break;
-                case ConsoleKey.D2:
-                    choice = 2;
-                    break;
-                case ConsoleKey.D3:
-                    choice = 3;
-                    break;
-                case ConsoleKey.D4:
-                    choice = 4;
-                    break;
-                case ConsoleKey.D5:
-                    choice = 5;
-                    break;
-            }
+                Console.WriteLine("\nWhere do you want to explore?");
 
-            if (choice >= 1 && choice <= options.Count)
-            {
-                lastRoom = CurrentRoom;
-                Room newRoom = options[choice - 1]();
+                for (int i = 0; i < options.Count; i++)
+                {
+                    Room roomOption = options[i];
 
-                CurrentRoom = newRoom;
-                Energy -= 2; //explore energy cost
+                    string exploredStatus = "";
+                    if (roomOption.Explored == true)
+                    {
+                        exploredStatus = "[Already explored]";
+                    }
 
+                    Console.WriteLine($"{i + 1}. {roomOption.Name} {exploredStatus}");
+                }
+                Console.WriteLine("Press number of your choice:");
+                var key2 = Console.ReadKey(true).Key;
                 Console.Clear();
-                Console.WriteLine($"You enter the {newRoom.Name}");
-                Console.WriteLine($"Energy left: {Energy}");
-            }
-            else
-            {
-                Console.WriteLine("Invalid choice.");
+                int choice = -1;
+
+                switch (key2)
+                {
+                    case ConsoleKey.D1:
+                        choice = 1;
+                        break;
+                    case ConsoleKey.D2:
+                        choice = 2;
+                        break;
+                    case ConsoleKey.D3:
+                        choice = 3;
+                        break;
+                    case ConsoleKey.D4:
+                        choice = 4;
+                        break;
+                    case ConsoleKey.D5:
+                        choice = 5;
+                        break;
+                }
+
+                if (choice >= 1 && choice <= options.Count)
+                {
+                    lastRoom = CurrentRoom;
+                    Room newRoom = options[choice - 1];
+
+                    CurrentRoom = newRoom;
+                    Energy -= 2; //explore energy cost
+
+                    Console.Clear();
+                    Console.WriteLine($"You enter the {newRoom.Name}");
+                    Console.WriteLine($"Energy left: {Energy}");
+                }
+                else
+                {
+                    Console.WriteLine("Invalid choice.");
+                }
+
             }
         }
 
